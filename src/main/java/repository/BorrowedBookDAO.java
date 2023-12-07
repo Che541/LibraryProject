@@ -36,7 +36,7 @@ public class BorrowedBookDAO {
 			long millis = System.currentTimeMillis();
 			Date returnedDate = new Date(millis);
 		
-			String query = "UPDATE borrowed_book SET ReturnedDate = ? WHERE BorrowedBookID = ?";
+			String query = "UPDATE borrowed_book SET ReturnedDate = ? WHERE BookID = ? AND ReturnedDate IS NULL";
 			PreparedStatement posted = con.prepareStatement(query);
 			posted.setDate(1, returnedDate);
 			posted.setInt(2, borrowedBookId);

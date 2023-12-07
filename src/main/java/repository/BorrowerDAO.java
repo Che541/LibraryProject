@@ -26,16 +26,16 @@ public class BorrowerDAO {
 		try {
 			Connection con = JDBCUtil.getConnection();
 			String query = "SELECT * FROM Borrower ";
-			query += "JOIN BorrowedBook ON Borrower.BorrowerID = BorrowedBook.BorrowerID ";
-			query += "JOIN Book ON BorrowedBook.BookID = Book.BookID ";
-			query += "JOIN BookDescription ON Book.BookDescriptionID = BookDescription.BookDescriptionID ";
+			query += "JOIN Borrowed_Book ON Borrower.BorrowerID = Borrowed_Book.BorrowerID ";
+			query += "JOIN Book ON Borrowed_Book.BookID = Book.BookID ";
+			query += "JOIN Book_Description ON Book.BookDescID = Book_Description.BookDescID ";
 			query += "WHERE Borrower.BorrowerFirstName = ? AND Borrower.BorrowerLastName = ?";
 			PreparedStatement statement = con.prepareStatement(query);
 			statement.setString(1, borrowerFirstName);
 			statement.setString(2, borrowerLastName);
 			ResultSet result = statement.executeQuery();
 			System.out.print(borrowerFirstName + " " + borrowerLastName + " ");
-			System.out.println(result.getInt("BorrowerID"));
+			//System.out.println(result.getInt("borrower.BorrowerID"));
 			System.out.println("Borrow History ");
 			System.out.println("Book ID Title CheckOutDate DueDate ReturnedDate");
 			while(result.next()) {

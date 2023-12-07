@@ -7,15 +7,16 @@ import utils.JDBCUtil;
 
 public class BookDescriptionDAO {
 	
-	public static void createBookDescription(String title, String genre, String summary, String ISBN) throws Exception{
+	public static void createBookDescription(String title, String author, String genre, String summary, String ISBN) throws Exception{
 		try {
 			Connection con = JDBCUtil.getConnection();
-			String query = "INSERT INTO book_description (Title, Genre, Summary, ISBN) VALUES (?, ?, ?, ?)";
+			String query = "INSERT INTO book_description (Title, Author, Genre, Summary, ISBN) VALUES (?, ?, ?, ?, ?)";
 			PreparedStatement posted = con.prepareStatement(query);
 			posted.setString(1, title);
-			posted.setString(2, genre);
-			posted.setString(3, summary);
-			posted.setString(4, ISBN);
+			posted.setString(2, author);
+			posted.setString(3, genre);
+			posted.setString(4, summary);
+			posted.setString(5, ISBN);
 			posted.executeUpdate();
 		} catch (Exception e) {System.out.println(e);}
 		finally {System.out.println("Book description added.");};
