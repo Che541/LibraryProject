@@ -48,7 +48,7 @@ public class BookDAO {
 			String query = "DELETE FROM book WHERE BookID = ?";
 			PreparedStatement posted = con.prepareStatement(query);
 			posted.setInt(1, bookId);
-			posted.executeQuery();
+			posted.executeUpdate();
 		} catch (Exception e) {System.out.println(e);}
 		finally {System.out.println("Book deleted.");};
 	}
